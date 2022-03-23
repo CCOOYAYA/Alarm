@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    public int stamina;
+    private int steps;
     public float moveSpeed;
     public Transform movePoint;
     public AudioSource sfx_goat1;
@@ -36,12 +36,14 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        steps = 0;
         // 瓦片总数
         sum = area.xMax * area.yMax;
         print("Number of tiles: " + sum);
 
         movePoint.parent = null;
+
     }
 
     // Update is called once per frame
@@ -49,25 +51,25 @@ public class PlayerController : MonoBehaviour
     {
         Swipe();
         tilemap.SetTile(Vector3Int.FloorToInt(transform.position), dirt);
-        GameManager.S.RefreshStaminText(stamina);
+        GameManager.S.RefreshStepText(steps);
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         
-        // 未耗尽体力且未吃完全部的草,游戏进行中
+        // 未吃完全部的草,游戏进行中
         // PC 控制器
-        if (stamina > 0 && GetAllGrassTileNumber() > 0)
+        if (GetAllGrassTileNumber() > 0)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
                 {
                     transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
-                    for (int i = 0; i <= 8 && stamina > 0; i++) {
+                    for (int i = 0; i <= 8; i++) {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.2f, stopMovement))
                         {
                             movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -89,15 +91,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
-                    for (int i = 0; i <= 8 && stamina > 0; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.2f, stopMovement))
                         {
                             
                             movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -127,21 +129,21 @@ public class PlayerController : MonoBehaviour
         }
 
         // 手机控制器
-        if (stamina > 0 && GetAllGrassTileNumber() > 0)
+        if (GetAllGrassTileNumber() > 0)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
                 if (swipeDirection.Equals("left"))
                 {
                     transform.localScale = new Vector3 (-1, 1, 1);
-                    for (int i = 0; i <= 8 && stamina > 0; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3( -1f, 0f, 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3( -1f, 0f, 0f), 0.2f, stopMovement))
                         {
                             movePoint.position += new Vector3( -1f, 0f, 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -164,15 +166,15 @@ public class PlayerController : MonoBehaviour
                 else if (swipeDirection.Equals("right"))
                 {
                     transform.localScale = new Vector3(1, 1, 1);
-                    for (int i = 0; i <= 8 && stamina > 0; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), 0.2f, stopMovement))
                         {
 
                             movePoint.position += new Vector3(1f, 0f, 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -194,15 +196,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (swipeDirection.Equals("up"))
                 {
-                    for (int i = 0; i <= 8 && stamina > 0; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), 0.2f, stopMovement))
                         {
 
                             movePoint.position += new Vector3(0f, 1f, 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -224,15 +226,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (swipeDirection.Equals("down"))
                 {
-                    for (int i = 0; i <= 8 && stamina > 0; i++)
+                    for (int i = 0; i <= 8; i++)
                     {
                         //  碰撞检测，未超出边界
-                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), 0.2f, stopMovement) && stamina > 0)
+                        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), 0.2f, stopMovement))
                         {
 
                             movePoint.position += new Vector3(0f, -1f, 0f);
-                            stamina--;
-                            GameManager.S.RefreshStaminText(stamina);
+                            steps++;
+                            GameManager.S.RefreshStepText(steps);
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
@@ -261,24 +263,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 未耗尽体力且吃完全部的草，获胜
-        if (stamina > 0 && GetAllGrassTileNumber() <= 0)
+        // 吃完全部的草，获胜
+        if (GetAllGrassTileNumber() <= 0)
         {
             print("Win!");
-            GameManager.S.Win(activetime);
-            activetime++;
-        }
-        // 耗尽体力且未吃完全部的草,失败
-        if (stamina == 0 && GetAllGrassTileNumber() > 0)
-        {
-            print("Lose!");
-            GameManager.S.Lose(activetime);
-            activetime++;
-        }
-        // 耗尽体力且恰好吃完全部的草,获胜
-        if (stamina == 0 && GetAllGrassTileNumber() == 0)
-        {
-            print("Hard Win!");
             GameManager.S.Win(activetime);
             activetime++;
         }
@@ -363,26 +351,12 @@ public class PlayerController : MonoBehaviour
 
     public void CheckStatus()
     {
-        // 未耗尽体力且吃完全部的草，获胜
-        if (stamina > 0 && GetAllGrassTileNumber() <= 0)
+        // 吃完全部的草，获胜
+        if (GetAllGrassTileNumber() <= 0)
         {
             print("Win!");
             GameManager.S.Win(activetime);
             activetime++;
         }        
-        // 耗尽体力且恰好吃完全部的草,获胜
-        else if (stamina == 0 && GetAllGrassTileNumber() == 0)
-        {
-            print("Hard Win!");
-            GameManager.S.Win(activetime);
-            activetime++;
-        }
-        // 耗尽体力且未吃完全部的草,失败
-        else if (stamina <= 0 && GetAllGrassTileNumber() > 0)
-        {
-            print("Lose!");
-            GameManager.S.Lose(activetime);
-            activetime++;
-        }
     }
 }

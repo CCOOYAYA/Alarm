@@ -157,7 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1965cf97e0ac95a42b79fef7a8b2dc41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stamina: 25
   moveSpeed: 20
   movePoint: {fileID: 8521007736071394714}
   sfx_goat1: {fileID: 0}

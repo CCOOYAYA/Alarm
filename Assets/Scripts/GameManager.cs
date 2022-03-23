@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
         S = this;
     }
 
-    public Text staminaText;
+    public Text stepText;
+    public Text hintText;
     public AudioSource sfx_win;
     public AudioSource sfx_lose;
     public AudioSource sfx_oot;
@@ -19,10 +20,12 @@ public class GameManager : MonoBehaviour
     public GameObject dialog_win;
     public GameObject dialog_lose;
     public GameObject masklayer;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine("HintFadeOut");
         dialog_win.SetActive(false);
         dialog_lose.SetActive(false);
         masklayer.SetActive(false);
@@ -34,9 +37,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void RefreshStaminText(int stamina)
+    public void RefreshStepText(int steps)
     {
-        staminaText.text = "Stamina Left: " + stamina.ToString();
+        stepText.text = "Step Count: " + steps.ToString();
     }
 
     public void Win(int activetime)
@@ -80,6 +83,25 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         yield return null;
+    }
+
+    IEnumerator HintFadeOut()
+    {
+        Color color = hintText.color;
+        color.a = 1;
+        hintText.color = color;
+        yield return new WaitForSeconds(1);
+
+        float fadeOutTime = 1;
+        float percent = 0;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime / fadeOutTime;
+            color.a = (1 - percent);
+            hintText.color = color;
+            yield return null;
+        }
     }
 }
 
