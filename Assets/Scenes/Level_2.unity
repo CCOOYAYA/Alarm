@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &59100431 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7087499221308062116, guid: 6eb2def60f5b93144a3b2135625886c3, type: 3}
+  m_PrefabInstance: {fileID: 1709309355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &106448544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +560,11 @@ GameObject:
 --- !u!1 &803770154 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5126208667202945689, guid: dc1d645841918924cb60e3fcaa19089a, type: 3}
+  m_PrefabInstance: {fileID: 2134602172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &866308611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336316346776481537, guid: dc1d645841918924cb60e3fcaa19089a, type: 3}
   m_PrefabInstance: {fileID: 2134602172}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &999962523 stripped
@@ -1303,9 +1313,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 803770154}
     - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
+      propertyPath: sfx_start
+      value: 
+      objectReference: {fileID: 59100431}
+    - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
       propertyPath: dialog_win
       value: 
       objectReference: {fileID: 1234301391}
+    - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
+      propertyPath: dialog_hint
+      value: 
+      objectReference: {fileID: 866308611}
     - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
       propertyPath: dialog_lose
       value: 

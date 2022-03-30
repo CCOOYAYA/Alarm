@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5126208667202945689, guid: dc1d645841918924cb60e3fcaa19089a, type: 3}
   m_PrefabInstance: {fileID: 5126208666992611086}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &267795582 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7087499221308062116, guid: 6eb2def60f5b93144a3b2135625886c3, type: 3}
+  m_PrefabInstance: {fileID: 3797905125473129170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296719105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,17 +1088,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 3797905125112900443, guid: 6eb2def60f5b93144a3b2135625886c3, type: 3}
   m_PrefabInstance: {fileID: 3797905125473129170}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &992399127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5126208666691496764, guid: dc1d645841918924cb60e3fcaa19089a, type: 3}
-  m_PrefabInstance: {fileID: 5126208666992611086}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1098712350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1138,11 @@ Transform:
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3797905124534135604, guid: 6eb2def60f5b93144a3b2135625886c3, type: 3}
   m_PrefabInstance: {fileID: 3797905125473129170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1261967231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3336316346776481537, guid: dc1d645841918924cb60e3fcaa19089a, type: 3}
+  m_PrefabInstance: {fileID: 5126208666992611086}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1378215400 stripped
 MonoBehaviour:
@@ -1245,10 +1244,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 915110281}
     - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
-      propertyPath: hintText
-      value: 
-      objectReference: {fileID: 992399127}
-    - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
       propertyPath: sfx_lose
       value: 
       objectReference: {fileID: 1817019646}
@@ -1261,9 +1256,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 230067607}
     - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
+      propertyPath: sfx_start
+      value: 
+      objectReference: {fileID: 267795582}
+    - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
       propertyPath: dialog_win
       value: 
       objectReference: {fileID: 1394736727}
+    - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
+      propertyPath: dialog_hint
+      value: 
+      objectReference: {fileID: 1261967231}
     - target: {fileID: 931114694595351715, guid: f5877d0246a488e448a3294fcb0181bc, type: 3}
       propertyPath: dialog_lose
       value: 

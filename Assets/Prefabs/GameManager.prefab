@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepText: {fileID: 0}
-  hintText: {fileID: 0}
+  sfx_start: {fileID: 0}
   sfx_win: {fileID: 0}
   sfx_lose: {fileID: 0}
   sfx_oot: {fileID: 0}
+  dialog_hint: {fileID: 0}
   dialog_win: {fileID: 0}
   dialog_lose: {fileID: 0}
   masklayer: {fileID: 0}

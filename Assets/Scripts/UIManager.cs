@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
                     SoundOutOfTime.Play();
                     if (SoundOutOfTime.volume <= 1.0f)
                     {
-                        // ½¥Ç¿
+                        // volume up
                         SoundOutOfTime.volume += 0.1f; 
                     }
                 }

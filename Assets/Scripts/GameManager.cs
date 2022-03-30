@@ -12,20 +12,28 @@ public class GameManager : MonoBehaviour
     }
 
     public Text stepText;
-    public Text hintText;
+    public AudioSource sfx_start;
     public AudioSource sfx_win;
     public AudioSource sfx_lose;
     public AudioSource sfx_oot;
 
+    public GameObject dialog_hint;
     public GameObject dialog_win;
     public GameObject dialog_lose;
     public GameObject masklayer;
-    
 
+    private float UI_Alpha = 0f;
+    // The speed of UI fade out
+    private float alphaSpeed = 0.4f;
+    private CanvasGroup canvasGroup;
+
+    private bool isStarted;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("HintFadeOut");
+        isStarted = false;
+        dialog_hint.SetActive(true);
+        canvasGroup = dialog_hint.GetComponent<CanvasGroup>();
         dialog_win.SetActive(false);
         dialog_lose.SetActive(false);
         masklayer.SetActive(false);
@@ -34,7 +42,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HintFadeOut();
     }
 
     public void RefreshStepText(int steps)
@@ -79,29 +87,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void HintFadeOut()
+    {
+        if (canvasGroup == null)
+        {
+            return;
+        }
+
+        if (UI_Alpha != canvasGroup.alpha)
+        {
+            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, UI_Alpha, alphaSpeed * Time.deltaTime);
+            if (Mathf.Abs(UI_Alpha - canvasGroup.alpha) <= 0.01f)
+            {
+                canvasGroup.alpha = UI_Alpha;
+            }
+        }
+    }
+
+    public void HintOff()
+    {
+        dialog_hint.SetActive(false);
+        if (isStarted == false && !sfx_start.isPlaying)
+        {
+            sfx_start.Play();
+            isStarted = true;
+        }
+    }
+
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(3.0f);
         yield return null;
-    }
-
-    IEnumerator HintFadeOut()
-    {
-        Color color = hintText.color;
-        color.a = 1;
-        hintText.color = color;
-        yield return new WaitForSeconds(1);
-
-        float fadeOutTime = 1;
-        float percent = 0;
-
-        while (percent < 1)
-        {
-            percent += Time.deltaTime / fadeOutTime;
-            color.a = (1 - percent);
-            hintText.color = color;
-            yield return null;
-        }
     }
 }
 

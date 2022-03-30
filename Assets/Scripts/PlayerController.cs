@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         steps = 0;
-        // 瓦片总数
+        // The number of all tiles
         sum = area.xMax * area.yMax;
         print("Number of tiles: " + sum);
 
@@ -54,17 +54,19 @@ public class PlayerController : MonoBehaviour
         GameManager.S.RefreshStepText(steps);
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         
-        // 未吃完全部的草,游戏进行中
-        // PC 控制器
+        // Unfinish all the grass, game in progress
+        // PC Controller
         if (GetAllGrassTileNumber() > 0)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
                     for (int i = 0; i <= 8; i++) {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.2f, stopMovement))
                         {
                             movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -91,9 +93,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     for (int i = 0; i <= 8; i++)
                     {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.2f, stopMovement))
                         {
                             
@@ -103,7 +107,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -128,17 +132,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 手机控制器
+        // Mobile Controller
         if (GetAllGrassTileNumber() > 0)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
                 if (swipeDirection.Equals("left"))
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     transform.localScale = new Vector3 (-1, 1, 1);
                     for (int i = 0; i <= 8; i++)
                     {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3( -1f, 0f, 0f), 0.2f, stopMovement))
                         {
                             movePoint.position += new Vector3( -1f, 0f, 0f);
@@ -147,7 +153,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -165,10 +171,12 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (swipeDirection.Equals("right"))
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     transform.localScale = new Vector3(1, 1, 1);
                     for (int i = 0; i <= 8; i++)
                     {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), 0.2f, stopMovement))
                         {
 
@@ -178,7 +186,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -196,9 +204,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (swipeDirection.Equals("up"))
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     for (int i = 0; i <= 8; i++)
                     {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), 0.2f, stopMovement))
                         {
 
@@ -208,7 +218,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -226,9 +236,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (swipeDirection.Equals("down"))
                 {
+                    // Set off Hint text and dialog
+                    GameManager.S.HintOff();
                     for (int i = 0; i <= 8; i++)
                     {
-                        //  碰撞检测，未超出边界
+                        //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), 0.2f, stopMovement))
                         {
 
@@ -238,7 +250,7 @@ public class PlayerController : MonoBehaviour
                             tilemap.SetTile(Vector3Int.FloorToInt(movePoint.position), dirt);
                             GetAllGrassTileNumber();
 
-                            // 播放音效
+                            // SFX play
                             if (!sfx_goat1.isPlaying && !sfx_goat2.isPlaying)
                             {
                                 int p = Random.Range(0, 2);
@@ -263,7 +275,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 吃完全部的草，获胜
+        // Eat all the grass, Win!
         if (GetAllGrassTileNumber() <= 0)
         {
             print("Win!");
@@ -273,6 +285,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    // Detect swipe actions when in mobile control mode
     public void Swipe()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -327,11 +340,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //  获取所有草地瓦片的数量
+    //  Get all grass tile numbers
     public int GetAllGrassTileNumber()
     {
         int grassnumber = 0;
-        // 遍历整个Tilemap
+        // Broswer all the Tilemap
         for (float i = area.xMin - 1.5f; i < area.xMax; i++)
         {
             for (float j = area.yMin - 3.5f; j < area.yMax; j++)
@@ -351,7 +364,7 @@ public class PlayerController : MonoBehaviour
 
     public void CheckStatus()
     {
-        // 吃完全部的草，获胜
+        // Eat all the grass, Win!
         if (GetAllGrassTileNumber() <= 0)
         {
             print("Win!");
