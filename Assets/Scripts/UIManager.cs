@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        
         ButtonAdd.SetActive(true);
         ButtonMinus.SetActive(true);
         ButtonStart.SetActive(true);
