@@ -170,6 +170,6 @@ MonoBehaviour:
     m_Bits: 64
   area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 6, y: 9, z: 0}
+    m_Size: {x: 8, y: 16, z: 0}
   swpieRange: 50
   tapRange: 10

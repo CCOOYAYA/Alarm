@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
                     transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
-                    for (int i = 0; i <= 8; i++) {
+                    for (int i = 0; i <= area.yMax -1; i++) {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.2f, stopMovement))
                         {
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
                 {
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
-                    for (int i = 0; i <= 8; i++)
+                    for (int i = 0; i <= area.yMax - 1; i++)
                     {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.2f, stopMovement))
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
                     transform.localScale = new Vector3 (-1, 1, 1);
-                    for (int i = 0; i <= 8; i++)
+                    for (int i = 0; i <= area.yMax - 1; i++)
                     {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3( -1f, 0f, 0f), 0.2f, stopMovement))
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
                     transform.localScale = new Vector3(1, 1, 1);
-                    for (int i = 0; i <= 8; i++)
+                    for (int i = 0; i <= area.yMax - 1; i++)
                     {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), 0.2f, stopMovement))
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
                 {
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
-                    for (int i = 0; i <= 8; i++)
+                    for (int i = 0; i <= area.yMax - 1; i++)
                     {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), 0.2f, stopMovement))
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
                 {
                     // Set off Hint text and dialog
                     GameManager.S.HintOff();
-                    for (int i = 0; i <= 8; i++)
+                    for (int i = 0; i <= area.yMax - 1; i++)
                     {
                         //  Collider detction, not run beyond the boundary
                         if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), 0.2f, stopMovement))
