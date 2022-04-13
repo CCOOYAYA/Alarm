@@ -38,6 +38,12 @@ public class SetTimer : MonoBehaviour
         Application.Quit();
     }
 
+    public void JumpToSharePage()
+    {
+        // Jump to share page
+        SceneManager.LoadScene(5);
+    }
+
     public void TryAgain()
     {
         // Reloda Current Level

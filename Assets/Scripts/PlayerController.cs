@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    private int steps;
+    public static int steps;
     public float moveSpeed;
     public Transform movePoint;
     public AudioSource sfx_goat1;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         tilemap.SetTile(Vector3Int.FloorToInt(transform.position), dirt);
         GameManager.S.RefreshStepText(steps);
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        
+        CheckStatus();
         // Unfinish all the grass, game in progress
         // PC Controller
         if (GetAllGrassTileNumber() > 0)
@@ -370,6 +370,28 @@ public class PlayerController : MonoBehaviour
             print("Win!");
             GameManager.S.Win(activetime);
             activetime++;
+
+
+            // Sign in for today, and store the value
+            string date = System.DateTime.Now.Year.ToString() + System.DateTime.Now.Month.ToString() + System.DateTime.Now.Day.ToString();
+            // Not the first time to use
+            if (PlayerPrefs.HasKey("date"))
+            {
+                // streak + 1 if different day
+                if (!date.Equals(PlayerPrefs.GetString("date")))
+                {
+                    PlayerPrefs.SetString("date", date);
+                    PlayerPrefs.SetInt("streak", PlayerPrefs.GetInt("streak", 0) + 1);
+                }
+            }
+            // First time
+            else
+            {
+                PlayerPrefs.SetString("date", date);
+                PlayerPrefs.SetInt("streak", 1);
+            }
+            PlayerPrefs.Save();
         }        
     }
+
 }

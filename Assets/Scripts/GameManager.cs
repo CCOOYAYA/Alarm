@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     {
         S = this;
     }
+    
 
     public Text stepText;
     public AudioSource sfx_start;

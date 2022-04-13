@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 5126208665345962590}
   - component: {fileID: 5126208665345962561}
   m_Layer: 5
-  m_Name: text_bye
+  m_Name: text_okay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bye!
+  m_Text: Okay!
 --- !u!1 &5126208665387898053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 5126208666214252518}
   - component: {fileID: 5126208666214252521}
   m_Layer: 5
-  m_Name: btn_quit
+  m_Name: btn_share
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1487,7 +1487,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5126208666214252521}
         m_TargetAssemblyTypeName: SetTimer, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: JumpToSharePage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

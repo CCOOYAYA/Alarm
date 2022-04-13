@@ -19,7 +19,7 @@ public class Shutdown : MonoBehaviour
 
     public void JumpToRandomLevel()
     {
-        int p = Random.Range(1, 4);
+        int p = Random.Range(1, 5);
         SceneManager.LoadScene(p);
     }
 }
