@@ -50,4 +50,45 @@ public class SetTimer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void JumpToMainPage()
+    {
+        // Jump to main page
+        SceneManager.LoadScene(0);
+    }
+
+    public void JumpToSettingsPage()
+    {
+        // Jump to settings page
+        SceneManager.LoadScene(6);
+    }
+
+    public void DeleteData()
+    {
+        SettingsManager.S.ActiveConfirmPage(true);
+    }
+
+    public void ConfirmDeleteData()
+    {
+        PlayerPrefs.DeleteKey("date");
+        PlayerPrefs.DeleteKey("finishattime");
+        PlayerPrefs.DeleteKey("streak");
+        PlayerPrefs.Save();
+        SettingsManager.S.ActiveConfirmPage(false);
+    }
+
+    public void AbandonDeleteData()
+    {
+        SettingsManager.S.ActiveConfirmPage(false);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

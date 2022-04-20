@@ -26,9 +26,9 @@ public class SharePageButtons : MonoBehaviour
 
     public void Share()
     {
-        SharePageManager.S.ActiveDialogShare();
-        UnityEngine.GUIUtility.systemCopyBuffer = "Sleeper Alarm finished at " + SharePageManager.S.GetCurrentTime() + 
-            ". Total steps used: " + PlayerController.steps.ToString() + ". I have used Sleeper Alarm for " + 
-            SharePageManager.S.GetStreak() + " days.";
+        SharePageManager.S.ActiveDialogShare();  
+        UnityEngine.GUIUtility.systemCopyBuffer = "Sleeper finished at " + SharePageManager.S.GetFinishAtTime() + 
+            ". Total steps used: " + PlayerController.steps.ToString() + ". I have been using Sleeper for " + 
+            SharePageManager.S.GetStreak() + " day(s).";
     }
 }

@@ -381,6 +381,14 @@ public class PlayerController : MonoBehaviour
                 if (!date.Equals(PlayerPrefs.GetString("date")))
                 {
                     PlayerPrefs.SetString("date", date);
+                    if(PlayerPrefs.GetInt("is12hourclock", 1) == 1)
+                    {
+                        PlayerPrefs.SetString("finishattime", Utility.U.GetCurrentTime12h());
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("finishattime", Utility.U.GetCurrentTime24h());
+                    }
                     PlayerPrefs.SetInt("streak", PlayerPrefs.GetInt("streak", 0) + 1);
                 }
             }
@@ -388,6 +396,14 @@ public class PlayerController : MonoBehaviour
             else
             {
                 PlayerPrefs.SetString("date", date);
+                if (PlayerPrefs.GetInt("is12hourclock", 1) == 1)
+                {
+                    PlayerPrefs.SetString("finishattime", Utility.U.GetCurrentTime12h());
+                }
+                else
+                {
+                    PlayerPrefs.SetString("finishattime", Utility.U.GetCurrentTime24h());
+                }
                 PlayerPrefs.SetInt("streak", 1);
             }
             PlayerPrefs.Save();

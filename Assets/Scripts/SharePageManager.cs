@@ -29,23 +29,19 @@ public class SharePageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetCurrentTime();
+        RefreshCurrentTime();
     }
 
-
-    public string GetCurrentTime()
+    public void RefreshCurrentTime()
     {
-        string hour = System.DateTime.Now.Hour.ToString();
-        string minute;
-        if (System.DateTime.Now.Minute <= 9 && System.DateTime.Now.Minute >= 0)
+        if (PlayerPrefs.GetInt("is12hourclock", 1) == 1)
         {
-            minute = "0" + System.DateTime.Now.Minute.ToString();
+            time.text = Utility.U.GetCurrentTime12h();
         }
         else
         {
-            minute = System.DateTime.Now.Minute.ToString();
+            time.text = Utility.U.GetCurrentTime24h();
         }
-        return time.text = string.Format("{0:D2}:{1:D2}", hour, minute);
     }
 
 
@@ -57,6 +53,12 @@ public class SharePageManager : MonoBehaviour
     public string GetStreak()
     {
         return streak.text = PlayerPrefs.GetInt("streak", 0).ToString();
+    }
+
+    public string GetFinishAtTime()
+    {
+        string time = PlayerPrefs.GetString("finishattime", "0:00");
+        return time;
     }
 
     public void ActiveDialogShare()

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SharePage.unity
     guid: c5ebbefc05502274cadf58ee49f01487
+  - enabled: 1
+    path: Assets/Scenes/SettingsPage.unity
+    guid: 4a07238e185950d48b6fa84520b1dea8
   m_configObjects: {}

@@ -19,7 +19,16 @@ public class Shutdown : MonoBehaviour
 
     public void JumpToRandomLevel()
     {
-        int p = Random.Range(1, 5);
-        SceneManager.LoadScene(p);
+        if (PlayerPrefs.GetInt("enablehardlevels", 1) == 1)
+        {
+            int p = Random.Range(1, 5);
+            SceneManager.LoadScene(p);
+        }
+        else
+        {
+            int p = Random.Range(1, 4);
+            SceneManager.LoadScene(p);
+        }
+        
     }
 }

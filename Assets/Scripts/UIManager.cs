@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject ButtonShutDown;
     public GameObject ButtonAdd;
     public GameObject ButtonMinus;
+    public GameObject ButtonSettings;
 
 
     bool isStarted = false;
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
         ButtonAdd.SetActive(true);
         ButtonMinus.SetActive(true);
         ButtonStart.SetActive(true);
+        ButtonSettings.SetActive(true);
         ButtonCancel.SetActive(false);
         ButtonShutDown.SetActive(false);
         
@@ -65,6 +67,7 @@ public class UIManager : MonoBehaviour
             ButtonCancel.SetActive(true);
             ButtonAdd.SetActive(false);
             ButtonMinus.SetActive(false);
+            ButtonSettings.SetActive(false);
             Selector.SetActive(false);
             if (seconds >= 0)
             {
@@ -129,6 +132,7 @@ public class UIManager : MonoBehaviour
         Selector.SetActive(true);
         ButtonAdd.SetActive(true);
         ButtonMinus.SetActive(true);
+        ButtonSettings.SetActive(true);
         ButtonShutDown.SetActive(false);
         ButtonCancel.SetActive(false);
         RefreshDialogText("Quick Select");
