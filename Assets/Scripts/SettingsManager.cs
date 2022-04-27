@@ -18,7 +18,8 @@ public class SettingsManager : MonoBehaviour
     public Toggle tog_12h;
     public Toggle tog_hardlevels;
 
-    private int input = 0;
+    private int input_d = 0;
+    private int input_c = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,21 +109,30 @@ public class SettingsManager : MonoBehaviour
 
     public void ActiveDeveloperMode()
     {
-
+        // Enter development mode
         if (Input.touchCount >= 5)
         {
             text_developer.SetActive(true);
             PlayerPrefs.SetInt("isdeveloper", 1);
         }
-
         if (Input.GetKeyDown("d"))
         {
-            input++;
+            input_d++;
         }
-
-        if (input >= 5){ 
+        if (input_d >= 5){ 
             text_developer.SetActive(true);
             PlayerPrefs.SetInt("isdeveloper", 1);
+        }
+
+        // Quit development mode
+        if (Input.GetKeyDown("c"))
+        {
+            input_c++;
+        }
+        if (input_c >= 5)
+        {
+            text_developer.SetActive(false);
+            PlayerPrefs.SetInt("isdeveloper", 0);
         }
     }
 }

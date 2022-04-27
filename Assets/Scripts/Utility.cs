@@ -49,6 +49,14 @@ public class Utility : MonoBehaviour
             hour -= 12;
             isafternoon = true;
         }
+        else if (hour == 12)
+        {
+            isafternoon = true;
+        }
+        else
+        {
+            isafternoon = false;
+        }
         string minute;
         if (System.DateTime.Now.Minute <= 9 && System.DateTime.Now.Minute >= 0)
         {

@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public GameObject ButtonAdd;
     public GameObject ButtonMinus;
     public GameObject ButtonSettings;
+    public GameObject ButtonSkip;
 
 
     bool isStarted = false;
@@ -53,13 +54,13 @@ public class UIManager : MonoBehaviour
         ButtonSettings.SetActive(true);
         ButtonCancel.SetActive(false);
         ButtonShutDown.SetActive(false);
-        
         RefreshDialogText("Quick Select");
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetButtonSkip();
         RefreshTimerText(TimeToString(seconds));
         if (isStarted)
         {
@@ -156,6 +157,18 @@ public class UIManager : MonoBehaviour
         int millisecond = (int)((setTimer - (int)setTimer) * 1000);
         string outputtime = string.Format("{0:D2}:{1:D2}:{2:D2}", hour, minute, second);
         return outputtime;
+    }
+
+    public void SetButtonSkip()
+    {
+        if (PlayerPrefs.GetInt("isdeveloper", 0) == 1)
+        {
+            ButtonSkip.SetActive(true);
+        }
+        else
+        {
+            ButtonSkip.SetActive(false);
+        }
     }
 
     public void Swipe()
