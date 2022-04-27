@@ -15,6 +15,7 @@ public class SharePageManager : MonoBehaviour
     public Text time;
     public Text steps;
     public Text streak;
+    public Text text_days;
 
     public GameObject dialog_share;
 
@@ -22,6 +23,7 @@ public class SharePageManager : MonoBehaviour
     void Start()
     {
         dialog_share.SetActive(false);
+        RefreshTextDays();
         GetSteps();
         GetStreak();
     }
@@ -44,6 +46,17 @@ public class SharePageManager : MonoBehaviour
         }
     }
 
+    public void RefreshTextDays()
+    {
+        if (PlayerPrefs.GetInt("streak", 0) == 1)
+        {
+            text_days.text = "DAY";
+        }
+        else
+        {
+            text_days.text = "DAYS";
+        }
+    }
 
     public void GetSteps()
     {
